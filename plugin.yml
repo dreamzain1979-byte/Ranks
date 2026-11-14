@@ -1,0 +1,49 @@
+name: RankedSMP
+version: '1.0.0'
+main: dev.rankedsmp.RankedSMP
+api-version: '26.3'
+folia-supported: true
+description: Elo ranks, orbs, the Underworld dimension and the Blood Moon mace ritual.
+authors: [RankedSMP]
+
+commands:
+  rank:
+    description: Show your (or another player's) Elo, rank and kill cooldowns.
+    usage: /rank [player]
+    permission: underworld.rank
+  ranktop:
+    description: Top 10 players by Elo.
+    usage: /ranktop
+    permission: underworld.rank
+  rankcooldown:
+    description: Remove active kill cooldowns involving a player.
+    usage: /rankcooldown remove <player>
+    permission: underworld.admin
+  rankreset:
+    description: Reset one player's (or everyone's) Elo and stats.
+    usage: /rankreset <player|all>
+    permission: underworld.admin
+  rankset:
+    description: Set a player's exact Elo.
+    usage: /rankset <player> <elo>
+    permission: underworld.admin
+  orb:
+    description: Give or list orbs.
+    usage: /orb <give|list> ...
+    permission: underworld.admin
+  ritual:
+    description: Test or inspect the Blood Moon ritual.
+    usage: /ritual <status|start>
+    permission: underworld.admin
+  underworld:
+    description: Underworld utilities.
+    usage: /underworld <leave|enter [player]>
+    permission: underworld.leave
+
+permissions:
+  underworld.rank:
+    default: true
+  underworld.leave:
+    default: true
+  underworld.admin:
+    default: op

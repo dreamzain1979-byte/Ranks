@@ -1,0 +1,99 @@
+# ============================ RankedSMP config ============================
+prefix: "<gradient:#7c3aed:#22d3ee><bold>RankedSMP</bold></gradient> <dark_gray>»</dark_gray> "
+
+# ---- Ranks -------------------------------------------------------------
+# Minimum Elo for each rank. ArchNemesis has no threshold: it is held by the
+# single Nemesis-or-higher player with the highest Elo.
+ranks:
+  copper: 0
+  iron: 50
+  gold: 100
+  platinum: 150
+  diamond: 200
+  netherite: 250
+  nemesis: 300
+
+elo:
+  # Seconds a killer must wait before gaining Elo from the same victim again (72h).
+  kill-cooldown-seconds: 259200
+  # false = only PvP deaths count towards the "deaths" stat
+  count-all-deaths: false
+
+chat:
+  # Prefix chat messages with the rank icon (needs the resource pack).
+  show-rank-in-chat: true
+  show-rank-in-tab: true
+
+nametag:
+  enabled: true          # rank icon in front of the name above the head
+  style: team            # team = real tag in front of the name (scoreboard team prefix); display = floating icon entity
+  # if 'team' fails on your server it falls back to 'display' automatically (see console)
+  mode: left             # (display style only) left = in front of the name on the same line, above = stacked over it
+  scale: 0.6             # icon size: 0.6 is about the height of a lowercase letter such as "o"
+  y-offset: 0.55         # raise/lower the icon if it does not line up with the name
+  gap: 0.02              # space between icon and name (left mode)
+
+# ---- Orbs ----------------------------------------------------------------
+orbs:
+  material: HEART_OF_THE_SEA   # base item for every orb (resource pack overrides its model)
+
+# ---- Underworld ----------------------------------------------------------
+underworld:
+  world-name: world_underworld
+  nether-world-name: world_nether
+  # On plain Paper/Purpur the plugin creates the world itself.
+  # On FOLIA worlds cannot be created at runtime: create it once with a world
+  # manager / datapack and keep the same name here (see README).
+  create-world: true
+  # Use the world from the Unstable Underworld datapack: any world whose key namespace matches this is the Underworld.
+  datapack-namespace: unstable_underworld
+  use-highest-block: true    # arrive on the surface at the highest block
+  teleport-on-fall: true     # set false if the datapack already teleports players itself
+  fall-trigger-y: 0          # y below this in the nether sends the player down
+  coordinate-scale: 1.0      # nether x/z * scale = underworld x/z
+  scan-start-y: 130          # safe-spot search starts here and goes down
+  remove-nether-floor-bedrock: true   # new nether chunks get no floor bedrock (so players can fall through)
+  allow-leave-command: true
+
+# ---- Blood Moon ------------------------------------------------------------
+bloodmoon:
+  overworld-name: ""          # empty = first NORMAL world
+  night-start: 13000
+  night-end: 23000
+
+# ---- Ritual ----------------------------------------------------------------
+ritual:
+  debug: true            # logs every Mace-on-Heavy-Core click with the reason it did or didn't start
+  ring-radius: 3.5
+  height: 8
+  ascent-ticks-per-core: 50
+  stagger-ticks: 25
+  ring-hold-ticks: 40
+  implode-ticks: 70
+
+# Optional: send the resource pack on join. Leave url empty to disable.
+resource-pack:
+  url: ""
+  sha1: ""
+  prompt: "Ranked SMP resource pack (rank icons, orbs, Blood Moon)"
+
+# ---- Messages (MiniMessage) ----------------------------------------------
+messages:
+  no-permission: "<prefix><red>You don't have permission."
+  unknown-player: "<prefix><red>Unknown player: <player>"
+  elo-gain: "<prefix><green>+<amount> Elo <gray>(<elo> Elo, <rank>)"
+  elo-loss: "<prefix><red>-<amount> Elo <gray>(<elo> Elo, <rank>)"
+  rank-up: "<prefix><gold>You reached <rank><gold>!"
+  rank-down: "<prefix><gray>You dropped to <rank><gray>."
+  kill-cooldown: "<prefix><yellow>You killed <player> too recently - no Elo gained. <gray>(<time> left)"
+  archnemesis-new: "<prefix><light_purple><player> <white>is now the <rank><white>!"
+  archnemesis-none: "<prefix><gray>The ArchNemesis title is vacant."
+  bloodmoon-rise: "<dark_red><bold>A Blood Moon rises...</bold> <red>The Underworld stirs."
+  bloodmoon-end: "<gray>The Blood Moon fades as dawn approaches."
+  ritual-no-bloodmoon: "<prefix><red>The ritual only works under a Blood Moon."
+  ritual-bad-pattern: "<prefix><red>Place 5 Heavy Cores on the ground in a + shape (one in the middle, one on each side) or an X, then use the Mace on the middle one."
+  ritual-bad-rank: "<prefix><red>Only Netherite, Nemesis or ArchNemesis players can perform this ritual."
+  ritual-active: "<prefix><red>A ritual is already running here."
+  ritual-start: ""   # empty = no chat message
+  ritual-done: ""    # empty = no chat message
+  ritual-failed: "<prefix><red>The ritual collapsed unexpectedly."
